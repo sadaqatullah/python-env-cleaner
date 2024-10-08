@@ -27,7 +27,11 @@ def main():
     for package in packages_to_remove:
         print(f"  - {package}")
 
-    confirmation = input("Do you want to proceed? (y/n): ").lower()
+    if "--auto-confirm" in sys.argv:
+        confirmation = 'y'
+    else:
+        confirmation = input("Do you want to proceed? (y/n): ").lower()
+
     if confirmation == 'y':
         uninstall_packages(packages_to_remove)
         print("Cleanup completed.")

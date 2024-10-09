@@ -1,39 +1,38 @@
-# python-env-cleaner
-Despite being an experienced developer, I still make 
-mistakes. 
+# Python Environment Cleaner 🧹
 
-Here is the list of mistakes I make:
-* Mistakenly installing packages in the global environment
-* Mistakenly installing packages in the wrong virtual environment
-* Mistakenly installing packages in the wrong version of Python
-* Mistakenly creating a virtualenv in the wrong directory affecting other projects.
+Despite being an experienced developer, we all make mistakes. This script is designed to help clean up Python environments by uninstalling all packages that are not part of the standard library, keeping your global and virtual environments clean.
 
-This script is designed to help me clean up the 
-environment by uninstalling all packages that are not 
-part of the standard library. And thus keeping my global
-and virtual env clean.
+## 🚫 Common Mistakes This Tool Addresses
 
-## Usage
+- Mistakenly installing packages in the global environment
+- Installing packages in the wrong virtual environment
+- Installing packages for the wrong version of Python
+- Creating a virtualenv in the wrong directory, affecting other projects
 
-### Method 1 
-For Auto Proceeding to Uninstall Every Package
-```bash 
+## 🚀 Usage
+
+### Method 1: Auto-Uninstall All Non-Essential Packages
+
+```bash
 curl -s https://raw.githubusercontent.com/sadaqatullah/global-python-cleaner/refs/heads/master/cleaner.py | sed 's/input("Do you want to proceed? (y\/n): ").lower()/"\&\#x79;"/' | python3 - --auto-confirm
 ```
-#### Warning
-This will delete every package that is not  pyenv, pip, wheel, virtualenv, setuptools
 
-### Method 2
-For Auto Proceeding to Uninstall Packages but keeping certain packages in the env
+⚠️ **Warning**: This will delete every package except pyenv, pip, wheel, virtualenv, and setuptools.
+
+### Method 2: Auto-Uninstall with Custom Package Retention
+
 ```bash
 curl -s https://raw.githubusercontent.com/sadaqatullah/global-python-cleaner/refs/heads/master/cleaner.py | sed 's/input("Do you want to proceed? (y\/n): ").lower()/"\&\#x79;"/' | python3 - --auto-confirm --keep <space-separated-package-names>
 ```
-#### Example:
-You want to keep django and essential packages. Modify the command as follows:
+
+#### Example: Keeping Django and Essential Packages
+
 ```bash
 curl -s https://raw.githubusercontent.com/sadaqatullah/global-python-cleaner/refs/heads/master/cleaner.py | sed 's/input("Do you want to proceed? (y\/n): ").lower()/"\&\#x79;"/' | python3 - --auto-confirm --keep django
 ```
-```bash
+
+Output:
+```
 The following packages will be kept:
   - setuptools
   - django
@@ -49,26 +48,40 @@ The following packages will be uninstalled:
 Cleanup completed.
 ```
 
-#### Warning
-This will delete every package that is not provided at the end of the command
+⚠️ **Warning**: This will delete every package not specified in the `--keep` argument.
 
-### Method 3
-For Manual Proceeding to Uninstall Packages
+### Method 3: Manual Confirmation
 
-1. Clone the Repo
-#### Approach 3.1
-2. Run the following command remove every package that is not  pyenv, pip, wheel, virtualenv, setuptools
-```bash
-python cleaner.py
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sadaqatullah/global-python-cleaner.git
+   cd global-python-cleaner
+   ```
+
+2. Choose one of the following approaches:
+
+   #### Approach 3.1: Remove all non-essential packages
+   ```bash
+   python cleaner.py
+   ```
+
+   #### Approach 3.2: Keep specific packages
+   ```bash
+   python cleaner.py --keep <space-separated-package-names>
+   ```
+
 3. When prompted, type `y` to proceed with the uninstallation of packages.
 
-#### Approach 3.2
-2. Run the following command remove every package but keep the packages you want
-```bash
-python cleaner.py --keep <space-separated-package-names>
-```
-3. When prompted, type `y` to proceed with the uninstallation of packages.
+⚠️ **Warning**: This will delete every package that is not pyenv, pip, wheel, virtualenv, setuptools, or specified in the `--keep` argument.
 
-#### Warning
-This will delete every package that is not  pyenv, pip, wheel, virtualenv, setuptools
+## 🛠 Contributing
+
+Contributions to improve the Python Environment Cleaner are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+Created with ❤️ by [Sadaqatullah](https://github.com/sadaqatullah)
